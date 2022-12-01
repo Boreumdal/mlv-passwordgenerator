@@ -1,5 +1,6 @@
 {
   "name": "mlv-pwgenerator",
+  "author": "Melvin Arellano",
   "private": true,
   "version": "0.0.0",
   "type": "module",

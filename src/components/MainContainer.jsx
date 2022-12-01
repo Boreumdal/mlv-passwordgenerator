@@ -9,6 +9,7 @@ const MainContainer = () => {
     const [includeSym, setIncludeSym] = useState(false)
     const [strength, setStrength] = useState(0)
     const [password, setPassword] = useState('p4$$w0Rd')
+    const [notify, setNotify] = useState(false)
 
     const handleCharLength = e => {
         setCharLength(e.target.value)
@@ -18,6 +19,15 @@ const MainContainer = () => {
         setCharLength(1)
         setUpperCased(true)
     }, [])
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText(password)
+        setNotify(true)
+        let notifEnder = setInterval(() => {
+            setNotify(false)
+            clearInterval(notifEnder)
+        }, 1500)
+    }
 
     // for checkboxes
     const handleOptions = e => {
@@ -73,6 +83,7 @@ const MainContainer = () => {
 
     return (
         <main className='absolute font-mono top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-[400px]'>
+            { notify && <div className='bg-green-500 py-2 rounded-sm pl-4 text-xs'><p>Successfully copied <strong>{password}</strong></p></div>}
             <h1 className='text-center text-xl py-3 font-bold'>Password Generator</h1>
             <form onSubmit={generation}>
                 <div className="bg-gray-700 mx-7 my-1 py-4 px-5 flex flex-row">
@@ -80,7 +91,7 @@ const MainContainer = () => {
                         <p>{password}</p>
                     </div>
                     <div className='w-fit flex justify-center ml-1 items-center'>
-                        <p className='text-lg'><FaCopy /></p>
+                        <p onClick={handleCopy}  className='p-1 text-lg cursor-pointer hover:text-gray-100'><FaCopy /></p>
                     </div>
                 </div>
                 <div className="bg-gray-700 mx-7 my-2 pb-2">
@@ -121,7 +132,7 @@ const MainContainer = () => {
                         </div>
                     </div>
                     <div className='py-3 px-5'>
-                        <button type='submit' className='bg-green-500 py-2 w-full'>Generate</button>
+                        <button type='submit' className='bg-green-500 py-2 w-full' disabled={notify ? 'disabled' : ''}>Generate</button>
                     </div>
                 </div>
             </form>
