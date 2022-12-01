@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type='range'] {
+  appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  background-color: rgb(255, 255, 255);
+  animate: .2s;
+  border-radius: 1px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  border: 2px solid #6d6d6d;
+  height: 21px;
+  width: 21px;
+  border-radius: 50%;
+  background: #dbdbdb;
+  cursor: pointer;
+  margin-top: -8px;
+}
+
+input[type='checkbox'] {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  background-color: transparent;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type='checkbox']::before{
+  content: '';
+  width: 7px;
+  height: 7px;
+  background-color: white;
+  scale: 0;
+}
+
+input[type='checkbox']:checked::before {
+  scale: 1;
+}
+
+.result::-webkit-scrollbar {
+  appearance: none;
+  height: 3px;
+}
+.result::-webkit-scrollbar-thumb {
+  background-color: rgb(211, 211, 211);
+  border-radius: 5px;
+}
